@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ghaith Oueslati - Full-Stack Developer Portfolio">
+    <title>Ghaith Oueslati | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bg-animation"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+    
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo"><span class="logo-text">GO</span><span class="logo-dot"></span></a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active" data-i18n="nav.home">Home</a></li>
+                <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+                <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+                <li><a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+            <div class="nav-controls"> 
+                <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon" id="theme-icon"></i></button>
+                <button class="lang-toggle" id="lang-toggle"><span id="lang-text">EN</span></button>
+                <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-code"></i><span data-i18n="hero.badge">Full-Stack Developer & Cloud Engineer</span></div>
+                <h1 class="hero-title"><span data-i18n="hero.greeting">Hello, I'm</span><span class="gradient-text">Ghaith Oueslati</span></h1>
+                <p class="hero-description" data-i18n="hero.description">Computer Engineering Student specializing in Full-Stack and Cloud. Expert in .NET, Spring Boot and Microservices. Passionate about DevOps and AI integration.</p>
+                <div class="hero-buttons">
+                    <a href="Oueslati Ghaith.pdf" download="Ghaith_Oueslati_CV.pdf" class="btn btn-primary"><span data-i18n="hero.downloadCV">Download CV</span><i class="fas fa-download"></i></a>
+                    <a href="#projects" class="btn btn-outline"><span data-i18n="hero.viewProjects">View Projects</span><i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://github.com/ghayth002" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/ghayth-weslati" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:ghaythweslaty10@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper">
+                    <img src="7cf775ed-3822-485a-9bda-aec83b547ac6.jpg" alt="Ghaith Oueslati" class="profile-img">
+                    <div class="image-border"></div>
+                    <div class="floating-card card-1"><i class="fab fa-aws"></i><span>AWS</span></div>
+                    <div class="floating-card card-2"><i class="fab fa-react"></i><span>React</span></div>
+                    <div class="floating-card card-3"><i class="fab fa-docker"></i><span>Docker</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header"><span class="section-subtitle" data-i18n="about.subtitle">Get to know me</span><h2 class="section-title" data-i18n="about.title">About Me</h2></div>
+            <div class="about-content">
+                <div class="about-info">
+                    <div class="info-card"><div class="info-icon"><i class="fas fa-graduation-cap"></i></div><div class="info-text"><h3 data-i18n="about.education">Education</h3><p>Esprit Engineering School</p><span data-i18n="about.educationDetails">Computer Engineering - Software Architecture & Cloud</span><span class="info-date">2021 - 2026</span></div></div>
+                    <div class="info-card"><div class="info-icon"><i class="fas fa-map-marker-alt"></i></div><div class="info-text"><h3 data-i18n="about.location">Location</h3><p>Ariana, Tunisia</p></div></div>
+                    <div class="info-card"><div class="info-icon"><i class="fas fa-language"></i></div><div class="info-text"><h3 data-i18n="about.languages">Languages</h3><div class="language-bars"><div class="lang-bar"><span data-i18n="about.arabic">Arabic (Native)</span><div class="bar"><div class="fill" style="width:100%"></div></div></div><div class="lang-bar"><span data-i18n="about.french">French (Pro)</span><div class="bar"><div class="fill" style="width:90%"></div></div></div><div class="lang-bar"><span data-i18n="about.english">English (Pro)</span><div class="bar"><div class="fill" style="width:85%"></div></div></div></div></div></div>
+                </div>
+                <div class="about-certifications">
+                    <h3 class="cert-title" data-i18n="about.certifications">Certifications</h3>
+                    <div class="cert-grid">
+                        <div class="cert-card"><div class="cert-icon aws"><i class="fab fa-aws"></i></div><div class="cert-info"><h4>AWS Cloud Foundations</h4><span>Amazon Web Services</span></div></div>
+                        <div class="cert-card"><div class="cert-icon hashgraph"><i class="fas fa-cubes"></i></div><div class="cert-info"><h4>Hashgraph Developer</h4><span>Hashgraph Association</span></div></div>
+                        <div class="cert-card"><div class="cert-icon graphql"><i class="fas fa-project-diagram"></i></div><div class="cert-info"><h4>Graph Developer</h4><span>Apollo GraphQL</span></div></div>
+                        <div class="cert-card"><div class="cert-icon cisco"><i class="fas fa-network-wired"></i></div><div class="cert-info"><h4>CCNA</h4><span>Cisco</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills section">
+        <div class="container">
+            <div class="section-header"><span class="section-subtitle" data-i18n="skills.subtitle">What I can do</span><h2 class="section-title" data-i18n="skills.title">Technical Skills</h2></div>
+            <div class="skills-content">
+                <div class="skill-category"><div class="category-header"><i class="fas fa-code"></i><h3 data-i18n="skills.languages">Languages</h3></div><div class="skill-tags"><span class="skill-tag">C#</span><span class="skill-tag">C++</span><span class="skill-tag">Java</span><span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span><span class="skill-tag">TypeScript</span><span class="skill-tag">SQL</span></div></div>
+                <div class="skill-category"><div class="category-header"><i class="fas fa-layer-group"></i><h3 data-i18n="skills.webStack">Web Stack</h3></div><div class="skill-tags"><span class="skill-tag">.NET 8</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">React.js</span><span class="skill-tag">Angular</span><span class="skill-tag">Qt</span><span class="skill-tag">SDL</span></div></div>
+                <div class="skill-category"><div class="category-header"><i class="fas fa-cloud"></i><h3 data-i18n="skills.devops">DevOps & Cloud</h3></div><div class="skill-tags"><span class="skill-tag">AWS</span><span class="skill-tag">Docker</span><span class="skill-tag">Jenkins</span><span class="skill-tag">SonarQube</span></div></div>
+                <div class="skill-category"><div class="category-header"><i class="fas fa-database"></i><h3 data-i18n="skills.databases">Databases</h3></div><div class="skill-tags"><span class="skill-tag">Oracle</span><span class="skill-tag">SQL Server</span><span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects section">
+        <div class="container">
+            <div class="section-header"><span class="section-subtitle" data-i18n="projects.subtitle">My work</span><h2 class="section-title" data-i18n="projects.title">Projects</h2></div>
+            <div class="projects-grid">
+                <div class="project-card featured"><div class="project-image"><div class="project-icon"><i class="fas fa-plane"></i></div></div><div class="project-content"><div class="project-badge">Freelance</div><h3>GSC Catering Platform</h3><p data-i18n="projects.gsc">Airline catering management with .NET 8, React, AWS DevOps, Jenkins CI/CD.</p><div class="project-tech"><span>.NET 8</span><span>React</span><span>AWS</span><span>Docker</span></div><div class="project-links"><a href="https://gsc-api-ne8j.onrender.com" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div></div></div>
+                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-leaf"></i></div></div><div class="project-content"><h3>EcoEvents</h3><p data-i18n="projects.ecoevents">Ecological events platform (+30% engagement).</p><div class="project-tech"><span>Laravel</span><span>MySQL</span></div><div class="project-links"><a href="https://ecoevents-5twin5-1.onrender.com/" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div></div></div>
+                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-brain"></i></div></div><div class="project-content"><h3>MindScribe</h3><p data-i18n="projects.journal">AI-powered multimodal app with semantic analysis.</p><div class="project-tech"><span>Django</span><span>Python</span><span>AI</span></div><div class="project-links"><a href="https://mindscribe-5twin5.onrender.com/" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div></div></div>
+                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-users"></i></div></div><div class="project-content"><h3>RecruitPro</h3><p data-i18n="projects.recruitpro">AI recruitment platform (+25% CV matching).</p><div class="project-tech"><span>MERN</span><span>ML</span></div><div class="project-links"><a href="https://recruitpro-frontend.onrender.com/index" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div></div></div>
+                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-car"></i></div></div><div class="project-content"><h3 data-i18n="projects.visiteTitle">Auto Inspection System</h3><p data-i18n="projects.visite">Desktop app with Oracle DB and Arduino integration.</p><div class="project-tech"><span>C++</span><span>Qt</span><span>Arduino</span></div></div></div>
+                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-gamepad"></i></div></div><div class="project-content"><h3 data-i18n="projects.gameTitle">2D Game</h3><p data-i18n="projects.game">Game in C with SDL and custom Arduino controller.</p><div class="project-tech"><span>C</span><span>SDL</span><span>Arduino</span></div></div></div>
+                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-chess-knight"></i></div></div><div class="project-content"><h3 data-i18n="projects.equitationTitle">Equitation Center</h3><p data-i18n="projects.equitation">Desktop application for managing an equestrian center.</p><div class="project-tech"><span>JavaFX</span><span>Java</span><span>MySQL</span></div><div class="project-links"><a href="https://github.com/ghayth002/PiDev-EquitationCenter" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> GitHub</a></div></div></div>
+                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-globe"></i></div></div><div class="project-content"><h3 data-i18n="projects.equitationWebTitle">Equitation Center Web</h3><p data-i18n="projects.equitationWeb">Web platform for managing an equestrian center.</p><div class="project-tech"><span>Symfony</span><span>PHP</span><span>MySQL</span></div><div class="project-links"><a href="https://github.com/ghayth002/PiDev-EquitationCenter-Symfony" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> GitHub</a></div></div></div>
+                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-network-wired"></i></div></div><div class="project-content"><h3 data-i18n="projects.unihubTitle">UniHub Microservices</h3><p data-i18n="projects.unihub">University management platform with Microservices architecture.</p><div class="project-tech"><span>Spring Boot</span><span>Eureka</span><span>Gateway</span></div><div class="project-links"><a href="https://github.com/ghayth002/UniHub-MicroServices-Backend" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> GitHub</a></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience section">
+        <div class="container">
+            <div class="section-header"><span class="section-subtitle" data-i18n="experience.subtitle">Career</span><h2 class="section-title" data-i18n="experience.title">Experience</h2></div>
+            <div class="timeline">
+                <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-content"><div class="timeline-header"><h3>Cube IT</h3><span class="timeline-date">Jun 2025 - Present</span></div><h4 data-i18n="experience.cubeTitle">Mobile Developer Intern</h4><p data-i18n="experience.cubeDesc">Flutter/Spring Boot app with route optimization and geolocation.</p><div class="timeline-tech"><span>Flutter</span><span>Spring Boot</span></div></div></div>
+                <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-content"><div class="timeline-header"><h3>Barmej Tech</h3><span class="timeline-date">Jun - Aug 2024</span></div><h4 data-i18n="experience.barmejTitle">Full-Stack Developer Intern</h4><p data-i18n="experience.barmejDesc">HR Platform with leave management (+30% performance).</p><div class="timeline-tech"><span>Full-Stack</span><span>HR</span></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-header"><span class="section-subtitle" data-i18n="contact.subtitle">Get in touch</span><h2 class="section-title" data-i18n="contact.title">Contact Me</h2></div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 data-i18n="contact.letsConnect">Let's Connect</h3>
+                    <p data-i18n="contact.description">Looking for opportunities. Feel free to reach out!</p>
+                    <div class="contact-cards">
+                        <a href="mailto:ghaythweslaty10@gmail.com" class="contact-card"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-text"><span>Email</span><p>ghaythweslaty10@gmail.com</p></div></a>
+                        <a href="tel:+21694854835" class="contact-card"><div class="contact-icon"><i class="fas fa-phone"></i></div><div class="contact-text"><span data-i18n="contact.phone">Phone</span><p>+216 94854835</p></div></a>
+                        <a href="https://linkedin.com/in/ghayth-weslati" target="_blank" class="contact-card"><div class="contact-icon"><i class="fab fa-linkedin-in"></i></div><div class="contact-text"><span>LinkedIn</span><p>ghayth-weslati</p></div></a>
+                        <a href="https://github.com/ghayth002" target="_blank" class="contact-card"><div class="contact-icon"><i class="fab fa-github"></i></div><div class="contact-text"><span>GitHub</span><p>ghayth002</p></div></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group"><input type="text" id="name" required><label for="name" data-i18n="contact.name">Name</label></div>
+                    <div class="form-group"><input type="email" id="email" required><label for="email" data-i18n="contact.email">Email</label></div>
+                    <div class="form-group"><textarea id="message" rows="5" required></textarea><label for="message" data-i18n="contact.message">Message</label></div>
+                    <button type="submit" class="btn btn-primary btn-full"><span data-i18n="contact.send">Send</span><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo"><span class="logo-text">GO</span><span class="logo-dot"></span></div>
+                <p data-i18n="footer.designed">Designed by Ghaith Oueslati</p>
+                <div class="footer-socials"><a href="https://github.com/ghayth002" target="_blank"><i class="fab fa-github"></i></a><a href="https://linkedin.com/in/ghayth-weslati" target="_blank"><i class="fab fa-linkedin-in"></i></a><a href="mailto:ghaythweslaty10@gmail.com"><i class="fas fa-envelope"></i></a></div>
+                <p class="copyright">&copy; 2025 Ghaith Oueslati</p>
+            </div>
+        </div>
+    </footer>
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
