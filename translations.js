@@ -44,6 +44,8 @@ const translations = {
         "experience.cubeDesc": "Flutter/Spring Boot app with route optimization and geolocation.",
         "experience.barmejTitle": "Full-Stack Developer Intern",
         "experience.barmejDesc": "HR Platform with leave management (+30% performance).",
+        "experience.posteTitle": "IT Support Intern",
+        "experience.posteDesc": "Active participation in IT systems maintenance and service digitalization.",
         "contact.subtitle": "Get in touch",
         "contact.title": "Contact Me",
         "contact.letsConnect": "Let's Connect",
@@ -59,7 +61,9 @@ const translations = {
         "projects.unihub": "University management platform with Microservices architecture (Spring Boot, Eureka, Gateway).",
         "contact.message": "Message",
         "contact.send": "Send Message",
-        "footer.designed": "Designed by Ghaith Oueslati"
+        "footer.designed": "Designed by Ghaith Oueslati",
+        "counter.label": "Total Visitors",
+        "counter.live": "Live"
     },
     fr: {
         "nav.home": "Accueil",
@@ -113,6 +117,8 @@ const translations = {
         "experience.cubeDesc": "App Flutter/Spring Boot avec optimisation d'itinéraires et géolocalisation.",
         "experience.barmejTitle": "Stagiaire Développeur Full-Stack",
         "experience.barmejDesc": "Plateforme RH avec gestion des congés (+30% performances).",
+        "experience.posteTitle": "Stagiaire IT Support",
+        "experience.posteDesc": "Participation active à la maintenance des systèmes informatiques et digitalisation des services.",
         "contact.subtitle": "Me joindre",
         "contact.title": "Me Contacter",
         "contact.letsConnect": "Connectons-nous",
@@ -122,6 +128,8 @@ const translations = {
         "contact.email": "Email",
         "contact.message": "Message",
         "contact.send": "Envoyer",
-        "footer.designed": "Conçu par Ghaith Oueslati"
+        "footer.designed": "Conçu par Ghaith Oueslati",
+        "counter.label": "Visiteurs Totaux",
+        "counter.live": "En Direct"
     }
 };

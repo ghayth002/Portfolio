@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ghaith Oueslati - Full-Stack Developer Portfolio">
     <title>Ghaith Oueslati | Portfolio</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBHYHLP6L1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TBHYHLP6L1');
+    </script>
+    <!-- End Google Analytics -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -118,6 +127,7 @@
             <div class="timeline">
                 <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-content"><div class="timeline-header"><h3>Cube IT</h3><span class="timeline-date">Jun 2025 - Present</span></div><h4 data-i18n="experience.cubeTitle">Mobile Developer Intern</h4><p data-i18n="experience.cubeDesc">Flutter/Spring Boot app with route optimization and geolocation.</p><div class="timeline-tech"><span>Flutter</span><span>Spring Boot</span></div></div></div>
                 <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-content"><div class="timeline-header"><h3>Barmej Tech</h3><span class="timeline-date">Jun - Aug 2024</span></div><h4 data-i18n="experience.barmejTitle">Full-Stack Developer Intern</h4><p data-i18n="experience.barmejDesc">HR Platform with leave management (+30% performance).</p><div class="timeline-tech"><span>Full-Stack</span><span>HR</span></div></div></div>
+                <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-content"><div class="timeline-header"><h3>La Poste Tunisienne</h3><span class="timeline-date">2021</span></div><h4 data-i18n="experience.posteTitle">IT Support Intern</h4><p data-i18n="experience.posteDesc">Active participation in IT systems maintenance and service digitalization.</p><div class="timeline-tech"><span>IT Support</span><span>Digitalization</span></div></div></div>
             </div>
         </div>
     </section>
@@ -145,6 +155,24 @@
             </div>
         </div>
     </section>
+
+    <!-- Visitor Counter Widget -->
+    <section class="visitor-counter-section">
+        <div class="container">
+            <div class="visitor-counter-widget" id="visitor-counter-widget">
+                <div class="visitor-counter-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="visitor-counter-info">
+                    <span class="visitor-counter-label" data-i18n="counter.label">Total Visitors</span>
+                    <span class="visitor-counter-number" id="visitor-count"><i class="fas fa-spinner fa-spin"></i></span>
+                </div>
+                <div class="visitor-counter-badge">
+                    <i class="fas fa-circle pulse-dot"></i>
+                    <span data-i18n="counter.live">Live</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Visitor Counter Widget -->
 
     <footer class="footer">
         <div class="container">

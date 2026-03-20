@@ -181,4 +181,49 @@ function typeWriter(element, text, speed = 50) {
     type();
 }
 
-console.log('Portfolio loaded successfully! 🚀');
+console.log('Portfolio loaded successfully! 🚀')
+
+// ─── Visitor Counter ─────────────────────────────────────────────────────────
+(function loadVisitorCounter() {
+    const countEl = document.getElementById('visitor-count');
+    if (!countEl) return;
+
+    // countapi.xyz — free, real, cross-device hit counter
+    // Namespace: your GitHub username | Key: unique page key
+    const namespace = 'ghayth002';
+    const key = 'portfolio-visits';
+
+    fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data && typeof data.value === 'number') {
+                animateCount(countEl, data.value);
+            } else {
+                countEl.textContent = '–';
+            }
+        })
+        .catch(() => {
+            // Fallback: show a local session-persisted count
+            const stored = parseInt(localStorage.getItem('pf_visits') || '0') + 1;
+            localStorage.setItem('pf_visits', stored);
+            animateCount(countEl, stored);
+        });
+
+    function animateCount(el, target) {
+        const duration = 1200;
+        const steps = 40;
+        const increment = target / steps;
+        let current = 0;
+        el.classList.add('loaded');
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            el.textContent = Math.floor(current).toLocaleString();
+        }, duration / steps);
+    }
+})();
+;
