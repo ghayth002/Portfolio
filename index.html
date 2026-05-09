@@ -3,193 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ghaith Oueslati - Full-Stack Developer Portfolio">
-    <title>Ghaith Oueslati | Portfolio</title>
-    <!-- Google Analytics -->
+    <meta name="description" content="Ghaith Oueslati - Full-Stack Developer & Cloud Engineer Portfolio">
+    <title>Ghaith Oueslati | Full-Stack & Cloud Engineer</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBHYHLP6L1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-TBHYHLP6L1');
-    </script>
-    <!-- End Google Analytics -->
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TBHYHLP6L1');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Layered 3D Background: Anime Scene + Particles -->
-    <div id="bg-video-wrap">
-        <div id="bg-anime-scene" style="background-image: url('anime-bg.png');"></div>
-        <div id="bg-video-overlay"></div>
-        <canvas id="bg-canvas"></canvas>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-content">
+            <h1 class="welcome-text">
+                <span>Welcome</span> <span>to</span> <span>my</span> <span data-i18n="welcome.universe">Universe.</span>
+            </h1>
+            <div class="welcome-loader"></div>
+        </div>
     </div>
-    
+
+    <!-- Custom Cursor -->
+    <div id="cursor" class="cursor"></div>
+    <div id="cursor-follower" class="cursor-follower"></div>
+
+
+    <!-- Fluid Aurora Background -->
+    <div class="aurora-bg"></div>
+
+    <!-- 3D Canvas Background -->
+    <canvas id="three-canvas"></canvas>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- NAV -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo"><span class="logo-text">GO</span><span class="logo-dot"></span></a>
+            <a href="#home" class="nav-logo">
+                <span class="logo-glyph">G</span>
+                <span class="logo-name">Ghaith<span class="logo-dot">.</span></span>
+            </a>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link active" data-i18n="nav.home">Home</a></li>
-                <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
-                <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a></li>
-                <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+                <li><a href="#home"       class="nav-link active" data-i18n="nav.home">Home</a></li>
+                <li><a href="#about"      class="nav-link" data-i18n="nav.about">About</a></li>
+                <li><a href="#skills"     class="nav-link" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="#projects"   class="nav-link" data-i18n="nav.projects">Projects</a></li>
                 <li><a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a></li>
-                <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+                <li><a href="#contact"    class="nav-link" data-i18n="nav.contact">Contact</a></li>
             </ul>
-            <div class="nav-controls"> 
-                <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon" id="theme-icon"></i></button>
-                <button class="lang-toggle" id="lang-toggle"><span id="lang-text">EN</span></button>
-                <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+            <div class="nav-controls">
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon" id="theme-icon"></i></button>
+                <button class="icon-btn lang-btn" id="lang-toggle"><span id="lang-text">EN</span></button>
+                <button class="hamburger" id="nav-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
+    <!-- ═══ HERO ═══ -->
     <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge"><i class="fas fa-code"></i><span data-i18n="hero.badge">Full-Stack Developer & Cloud Engineer</span></div>
-                <h1 class="hero-title"><span data-i18n="hero.greeting">Hello, I'm</span><span class="gradient-text">Ghaith Oueslati</span></h1>
-                <p class="hero-description" data-i18n="hero.description">Computer Engineering Student specializing in Full-Stack and Cloud. Expert in .NET, Spring Boot and Microservices. Passionate about DevOps and AI integration.</p>
-                <div class="hero-buttons">
-                    <a href="Oueslati Ghaith.pdf" download="Ghaith_Oueslati_CV.pdf" class="btn btn-primary"><span data-i18n="hero.downloadCV">Download CV</span><i class="fas fa-download"></i></a>
-                    <a href="#projects" class="btn btn-outline"><span data-i18n="hero.viewProjects">View Projects</span><i class="fas fa-arrow-right"></i></a>
+        <div class="hero-bg-text">GHAITH</div>
+        <div class="hero-inner">
+            <div class="hero-left">
+                <div class="hero-badges">
+                    <div class="status-badge reveal-up">
+                        <div class="status-dot"></div>
+                        <span data-i18n="hero.available">Available for work</span>
+                    </div>
+                    <div class="hero-tag reveal-up">
+                        <span class="tag-dot"></span>
+                        <span data-i18n="hero.badge">Full-Stack Developer &amp; Cloud Engineer</span>
+                    </div>
                 </div>
-                <div class="hero-socials">
-                    <a href="https://github.com/ghayth002" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/ghayth-weslati" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="mailto:ghaythweslaty10@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                <h1 class="hero-title reveal-up" style="--d:0.1s">
+                    <span class="title-line" data-i18n="hero.greeting">Hello, I'm</span>
+                    <span class="title-name">Ghaith<br>Oueslati</span>
+                </h1>
+                <p class="hero-sub reveal-up" style="--d:0.2s" data-i18n="hero.description">
+                    Computer Engineering Student specializing in Full-Stack and Cloud. Expert in .NET, Spring Boot and Microservices. Passionate about DevOps and AI integration.
+                </p>
+                <div class="hero-cta reveal-up" style="--d:0.3s">
+                    <a href="Oueslati Ghaith.pdf" download="Ghaith_Oueslati_CV.pdf" class="btn-primary magnetic">
+                        <span data-i18n="hero.downloadCV">Download CV</span>
+                        <i class="fas fa-arrow-down"></i>
+                    </a>
+                    <a href="#projects" class="btn-ghost magnetic">
+                        <span data-i18n="hero.viewProjects">View Projects</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="hero-socials reveal-up" style="--d:0.4s">
+                    <a href="https://github.com/ghayth002" target="_blank" class="social-orb" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/ghayth-weslati" target="_blank" class="social-orb" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:ghaythweslaty10@gmail.com" class="social-orb" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="image-wrapper">
-                    <img src="7cf775ed-3822-485a-9bda-aec83b547ac6.jpg" alt="Ghaith Oueslati" class="profile-img">
-                    <div class="image-border"></div>
-                    <div class="floating-card card-1"><i class="fab fa-aws"></i><span>AWS</span></div>
-                    <div class="floating-card card-2"><i class="fab fa-react"></i><span>React</span></div>
-                    <div class="floating-card card-3"><i class="fab fa-docker"></i><span>Docker</span></div>
+            <div class="hero-right reveal-right">
+                <div class="orb-scene" id="orb-scene">
+                    <div class="profile-ring ring-1"></div>
+                    <div class="profile-ring ring-2"></div>
+                    <div class="profile-ring ring-3"></div>
+                    <div class="profile-glow"></div>
+                    <img src="7cf775ed-3822-485a-9bda-aec83b547ac6.jpg" alt="Ghaith Oueslati" class="profile-photo">
+                    <div class="orbit-badge b1"><i class="fab fa-aws"></i><span>AWS</span></div>
+                    <div class="orbit-badge b2"><i class="fab fa-react"></i><span>React</span></div>
+                    <div class="orbit-badge b3"><i class="fab fa-docker"></i><span>Docker</span></div>
+                    <div class="orbit-badge b4"><i class="fas fa-brain"></i><span>AI</span></div>
                 </div>
             </div>
         </div>
+        <div class="hero-scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
     </section>
 
-    <section id="about" class="about section">
+    <!-- ═══ INFINITE MARQUEE ═══ -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span>FRONTEND</span><i class="fas fa-star-of-life"></i>
+                <span>BACKEND</span><i class="fas fa-star-of-life"></i>
+                <span>CLOUD</span><i class="fas fa-star-of-life"></i>
+                <span>DEVOPS</span><i class="fas fa-star-of-life"></i>
+                <span>AVAILABLE FOR WORK</span><i class="fas fa-star-of-life"></i>
+            </div>
+            <div class="marquee-content" aria-hidden="true">
+                <span>FRONTEND</span><i class="fas fa-star-of-life"></i>
+                <span>BACKEND</span><i class="fas fa-star-of-life"></i>
+                <span>CLOUD</span><i class="fas fa-star-of-life"></i>
+                <span>DEVOPS</span><i class="fas fa-star-of-life"></i>
+                <span>AVAILABLE FOR WORK</span><i class="fas fa-star-of-life"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section id="about" class="section about-section">
         <div class="container">
-            <div class="section-header"><span class="section-subtitle" data-i18n="about.subtitle">Get to know me</span><h2 class="section-title" data-i18n="about.title">About Me</h2></div>
-            <div class="about-content">
-                <div class="about-info">
-                    <div class="info-card"><div class="info-icon"><i class="fas fa-graduation-cap"></i></div><div class="info-text"><h3 data-i18n="about.education">Education</h3><p>Esprit Engineering School</p><span data-i18n="about.educationDetails">Computer Engineering - Software Architecture & Cloud</span><span class="info-date">2021 - 2026</span></div></div>
-                    <div class="info-card"><div class="info-icon"><i class="fas fa-map-marker-alt"></i></div><div class="info-text"><h3 data-i18n="about.location">Location</h3><p>Ariana, Tunisia</p></div></div>
-                    <div class="info-card"><div class="info-icon"><i class="fas fa-language"></i></div><div class="info-text"><h3 data-i18n="about.languages">Languages</h3><div class="language-bars"><div class="lang-bar"><span data-i18n="about.arabic">Arabic (Native)</span><div class="bar"><div class="fill" style="width:100%"></div></div></div><div class="lang-bar"><span data-i18n="about.french">French (Pro)</span><div class="bar"><div class="fill" style="width:90%"></div></div></div><div class="lang-bar"><span data-i18n="about.english">English (Pro)</span><div class="bar"><div class="fill" style="width:85%"></div></div></div></div></div></div>
+            <div class="section-head">
+                <span class="s-label reveal-up" data-i18n="about.subtitle">Get to know me</span>
+                <h2 class="s-title reveal-up" style="--d:.1s" data-i18n="about.title">About Me</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-cards">
+                    <div class="glass-card reveal-up" style="--d:.0s">
+                        <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="card-body">
+                            <h3 data-i18n="about.education">Education</h3>
+                            <p>Esprit Engineering School</p>
+                            <span data-i18n="about.educationDetails">Computer Engineering - Software Architecture &amp; Cloud</span>
+                            <em>2021 – 2026</em>
+                        </div>
+                    </div>
+                    <div class="glass-card reveal-up" style="--d:.1s">
+                        <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="card-body">
+                            <h3 data-i18n="about.location">Location</h3>
+                            <p>Ariana, Tunisia</p>
+                        </div>
+                    </div>
+                    <div class="glass-card reveal-up" style="--d:.2s">
+                        <div class="card-icon"><i class="fas fa-language"></i></div>
+                        <div class="card-body">
+                            <h3 data-i18n="about.languages">Languages</h3>
+                            <div class="lang-bars">
+                                <div class="lang-item"><span data-i18n="about.arabic">Arabic (Native)</span><div class="lang-bar"><div class="lang-fill" style="--w:100%"></div></div></div>
+                                <div class="lang-item"><span data-i18n="about.french">French (Pro)</span><div class="lang-bar"><div class="lang-fill" style="--w:90%"></div></div></div>
+                                <div class="lang-item"><span data-i18n="about.english">English (Pro)</span><div class="lang-bar"><div class="lang-fill" style="--w:85%"></div></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-certifications">
-                    <h3 class="cert-title" data-i18n="about.certifications">Certifications</h3>
-                    <div class="cert-grid">
-                        <div class="cert-card"><div class="cert-icon aws"><i class="fab fa-aws"></i></div><div class="cert-info"><h4>AWS Cloud Foundations</h4><span>Amazon Web Services</span></div></div>
-                        <div class="cert-card"><div class="cert-icon hashgraph"><i class="fas fa-cubes"></i></div><div class="cert-info"><h4>Hashgraph Developer</h4><span>Hashgraph Association</span></div></div>
-                        <div class="cert-card"><div class="cert-icon graphql"><i class="fas fa-project-diagram"></i></div><div class="cert-info"><h4>Graph Developer</h4><span>Apollo GraphQL</span></div></div>
-                        <div class="cert-card"><div class="cert-icon cisco"><i class="fas fa-network-wired"></i></div><div class="cert-info"><h4>CCNA</h4><span>Cisco</span></div></div>
+                <div class="cert-section reveal-right">
+                    <h3 class="cert-heading" data-i18n="about.certifications">Certifications</h3>
+                    <div class="cert-list">
+                        <div class="cert-pill"><div class="cert-dot aws"></div><div><strong>AWS Cloud Foundations</strong><span>Amazon Web Services</span></div></div>
+                        <div class="cert-pill"><div class="cert-dot hg"></div><div><strong>Hashgraph Developer</strong><span>Hashgraph Association</span></div></div>
+                        <div class="cert-pill"><div class="cert-dot gql"></div><div><strong>Graph Developer</strong><span>Apollo GraphQL</span></div></div>
+                        <div class="cert-pill"><div class="cert-dot cisco"></div><div><strong>CCNA</strong><span>Cisco</span></div></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="skills section">
+    <!-- ═══ SKILLS ═══ -->
+    <section id="skills" class="section skills-section">
         <div class="container">
-            <div class="section-header"><span class="section-subtitle" data-i18n="skills.subtitle">What I can do</span><h2 class="section-title" data-i18n="skills.title">Technical Skills</h2></div>
-            <div class="skills-content">
-                <div class="skill-category"><div class="category-header"><i class="fas fa-code"></i><h3 data-i18n="skills.languages">Languages</h3></div><div class="skill-tags"><span class="skill-tag">C#</span><span class="skill-tag">C++</span><span class="skill-tag">Java</span><span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span><span class="skill-tag">TypeScript</span><span class="skill-tag">SQL</span></div></div>
-                <div class="skill-category"><div class="category-header"><i class="fas fa-layer-group"></i><h3 data-i18n="skills.webStack">Web Stack</h3></div><div class="skill-tags"><span class="skill-tag">.NET 8</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">React.js</span><span class="skill-tag">Angular</span><span class="skill-tag">Qt</span><span class="skill-tag">SDL</span></div></div>
-                <div class="skill-category"><div class="category-header"><i class="fas fa-cloud"></i><h3 data-i18n="skills.devops">DevOps & Cloud</h3></div><div class="skill-tags"><span class="skill-tag">AWS</span><span class="skill-tag">Docker</span><span class="skill-tag">Jenkins</span><span class="skill-tag">SonarQube</span></div></div>
-                <div class="skill-category"><div class="category-header"><i class="fas fa-database"></i><h3 data-i18n="skills.databases">Databases</h3></div><div class="skill-tags"><span class="skill-tag">Oracle</span><span class="skill-tag">SQL Server</span><span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span></div></div>
+            <div class="section-head">
+                <span class="s-label reveal-up" data-i18n="skills.subtitle">What I can do</span>
+                <h2 class="s-title reveal-up" style="--d:.1s" data-i18n="skills.title">Technical Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-block reveal-up" style="--d:.0s">
+                    <div class="skill-block-header"><i class="fas fa-code"></i><h3 data-i18n="skills.languages">Languages</h3></div>
+                    <div class="skill-chips">
+                        <span class="chip">C#</span><span class="chip">C++</span><span class="chip">Java</span>
+                        <span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-block reveal-up" style="--d:.1s">
+                    <div class="skill-block-header"><i class="fas fa-layer-group"></i><h3 data-i18n="skills.webStack">Web Stack</h3></div>
+                    <div class="skill-chips">
+                        <span class="chip">.NET 8</span><span class="chip">Spring Boot</span><span class="chip">React.js</span>
+                        <span class="chip">Angular</span><span class="chip">Flutter</span><span class="chip">Qt</span>
+                    </div>
+                </div>
+                <div class="skill-block reveal-up" style="--d:.2s">
+                    <div class="skill-block-header"><i class="fas fa-cloud"></i><h3 data-i18n="skills.devops">DevOps &amp; Cloud</h3></div>
+                    <div class="skill-chips">
+                        <span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">Docker</span>
+                        <span class="chip">Kubernetes</span><span class="chip">Jenkins</span><span class="chip">GitHub Actions</span>
+                    </div>
+                </div>
+                <div class="skill-block reveal-up" style="--d:.3s">
+                    <div class="skill-block-header"><i class="fas fa-database"></i><h3 data-i18n="skills.databases">Databases</h3></div>
+                    <div class="skill-chips">
+                        <span class="chip">Oracle</span><span class="chip">SQL Server</span><span class="chip">MySQL</span>
+                        <span class="chip">MongoDB</span><span class="chip">PostgreSQL</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="projects section">
+    <!-- ═══ PROJECTS ═══ -->
+    <section id="projects" class="section projects-section">
         <div class="container">
-            <div class="section-header"><span class="section-subtitle" data-i18n="projects.subtitle">My work</span><h2 class="section-title" data-i18n="projects.title">Projects</h2></div>
+            <div class="section-head">
+                <span class="s-label reveal-up" data-i18n="projects.subtitle">My work</span>
+                <h2 class="s-title reveal-up" style="--d:.1s" data-i18n="projects.title">Projects</h2>
+            </div>
             <div class="projects-grid">
-                <div class="project-card featured"><div class="project-image"><div class="project-icon"><i class="fas fa-plane"></i></div></div><div class="project-content"><div class="project-badge">Freelance</div><h3>GSC Catering Platform</h3><p data-i18n="projects.gsc">Airline catering management with .NET 8, React, AWS DevOps, Jenkins CI/CD.</p><div class="project-tech"><span>.NET 8</span><span>React</span><span>AWS</span><span>Docker</span></div><div class="project-links"><a href="https://gsc-api-ne8j.onrender.com" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div></div></div>
-                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-leaf"></i></div></div><div class="project-content"><h3>EcoEvents</h3><p data-i18n="projects.ecoevents">Ecological events platform (+30% engagement).</p><div class="project-tech"><span>Laravel</span><span>MySQL</span></div><div class="project-links"><a href="https://ecoevents-5twin5-1.onrender.com/" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div></div></div>
-                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-brain"></i></div></div><div class="project-content"><h3>MindScribe</h3><p data-i18n="projects.journal">AI-powered multimodal app with semantic analysis.</p><div class="project-tech"><span>Django</span><span>Python</span><span>AI</span></div><div class="project-links"><a href="https://mindscribe-5twin5.onrender.com/" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div></div></div>
-                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-users"></i></div></div><div class="project-content"><h3>RecruitPro</h3><p data-i18n="projects.recruitpro">AI recruitment platform (+25% CV matching).</p><div class="project-tech"><span>MERN</span><span>ML</span></div><div class="project-links"><a href="https://recruitpro-frontend.onrender.com/index" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div></div></div>
-                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-car"></i></div></div><div class="project-content"><h3 data-i18n="projects.visiteTitle">Auto Inspection System</h3><p data-i18n="projects.visite">Desktop app with Oracle DB and Arduino integration.</p><div class="project-tech"><span>C++</span><span>Qt</span><span>Arduino</span></div></div></div>
-                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-gamepad"></i></div></div><div class="project-content"><h3 data-i18n="projects.gameTitle">2D Game</h3><p data-i18n="projects.game">Game in C with SDL and custom Arduino controller.</p><div class="project-tech"><span>C</span><span>SDL</span><span>Arduino</span></div></div></div>
-                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-chess-knight"></i></div></div><div class="project-content"><h3 data-i18n="projects.equitationTitle">Equitation Center</h3><p data-i18n="projects.equitation">Desktop application for managing an equestrian center.</p><div class="project-tech"><span>JavaFX</span><span>Java</span><span>MySQL</span></div><div class="project-links"><a href="https://github.com/ghayth002/PiDev-EquitationCenter" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> GitHub</a></div></div></div>
-                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-globe"></i></div></div><div class="project-content"><h3 data-i18n="projects.equitationWebTitle">Equitation Center Web</h3><p data-i18n="projects.equitationWeb">Web platform for managing an equestrian center.</p><div class="project-tech"><span>Symfony</span><span>PHP</span><span>MySQL</span></div><div class="project-links"><a href="https://github.com/ghayth002/PiDev-EquitationCenter-Symfony" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> GitHub</a></div></div></div>
-                <div class="project-card"><div class="project-image"><div class="project-icon"><i class="fas fa-network-wired"></i></div></div><div class="project-content"><h3 data-i18n="projects.unihubTitle">UniHub Microservices</h3><p data-i18n="projects.unihub">University management platform with Microservices architecture.</p><div class="project-tech"><span>Spring Boot</span><span>Eureka</span><span>Gateway</span></div><div class="project-links"><a href="https://github.com/ghayth002/UniHub-MicroServices-Backend" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> GitHub</a></div></div></div>
+                <div class="project-card featured reveal-up" style="--d:.0s">
+                    <div class="pc-glow" style="--hue:240"></div>
+                    <div class="pc-header"><span class="pc-badge">Freelance</span><div class="pc-icon" style="--hue:240"><i class="fas fa-plane"></i></div></div>
+                    <h3>GSC Catering Platform</h3>
+                    <p data-i18n="projects.gsc">Airline catering management with .NET 8, React, AWS DevOps, Jenkins CI/CD.</p>
+                    <div class="pc-tags"><span>.NET 8</span><span>React</span><span>AWS</span><span>Docker</span></div>
+                    <div class="pc-links"><a href="https://gsc-api-ne8j.onrender.com" target="_blank" class="pc-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+                </div>
+                <div class="project-card reveal-up" style="--d:.1s">
+                    <div class="pc-glow" style="--hue:140"></div>
+                    <div class="pc-header"><div class="pc-icon" style="--hue:140"><i class="fas fa-leaf"></i></div></div>
+                    <h3>EcoEvents</h3>
+                    <p data-i18n="projects.ecoevents">Ecological events platform (+30% engagement).</p>
+                    <div class="pc-tags"><span>Laravel</span><span>MySQL</span></div>
+                    <div class="pc-links"><a href="https://ecoevents-5twin5-1.onrender.com/" target="_blank" class="pc-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+                </div>
+                <div class="project-card reveal-up" style="--d:.2s">
+                    <div class="pc-glow" style="--hue:290"></div>
+                    <div class="pc-header"><div class="pc-icon" style="--hue:290"><i class="fas fa-brain"></i></div></div>
+                    <h3>MindScribe</h3>
+                    <p data-i18n="projects.journal">AI-powered multimodal app with semantic analysis.</p>
+                    <div class="pc-tags"><span>Django</span><span>Python</span><span>AI</span></div>
+                    <div class="pc-links"><a href="https://mindscribe-5twin5.onrender.com/" target="_blank" class="pc-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+                </div>
+                <div class="project-card reveal-up" style="--d:.3s">
+                    <div class="pc-glow" style="--hue:30"></div>
+                    <div class="pc-header"><div class="pc-icon" style="--hue:30"><i class="fas fa-users"></i></div></div>
+                    <h3>RecruitPro</h3>
+                    <p data-i18n="projects.recruitpro">AI recruitment platform (+25% CV matching).</p>
+                    <div class="pc-tags"><span>MERN</span><span>ML</span></div>
+                    <div class="pc-links"><a href="https://recruitpro-frontend.onrender.com/index" target="_blank" class="pc-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+                </div>
+                <div class="project-card reveal-up" style="--d:.4s">
+                    <div class="pc-glow" style="--hue:200"></div>
+                    <div class="pc-header"><div class="pc-icon" style="--hue:200"><i class="fas fa-network-wired"></i></div></div>
+                    <h3 data-i18n="projects.unihubTitle">UniHub Microservices</h3>
+                    <p data-i18n="projects.unihub">University management platform with Microservices architecture.</p>
+                    <div class="pc-tags"><span>Spring Boot</span><span>Eureka</span><span>Gateway</span></div>
+                    <div class="pc-links"><a href="https://github.com/ghayth002/UniHub-MicroServices-Backend" target="_blank" class="pc-btn"><i class="fab fa-github"></i> GitHub</a></div>
+                </div>
+                <div class="project-card reveal-up" style="--d:.5s">
+                    <div class="pc-glow" style="--hue:60"></div>
+                    <div class="pc-header"><div class="pc-icon" style="--hue:60"><i class="fas fa-car"></i></div></div>
+                    <h3 data-i18n="projects.visiteTitle">Auto Inspection System</h3>
+                    <p data-i18n="projects.visite">Desktop app with Oracle DB and Arduino integration.</p>
+                    <div class="pc-tags"><span>C++</span><span>Qt</span><span>Arduino</span></div>
+                </div>
+                <div class="project-card reveal-up" style="--d:.6s">
+                    <div class="pc-glow" style="--hue:170"></div>
+                    <div class="pc-header"><div class="pc-icon" style="--hue:170"><i class="fas fa-chess-knight"></i></div></div>
+                    <h3 data-i18n="projects.equitationTitle">Equitation Center</h3>
+                    <p data-i18n="projects.equitation">Desktop application for managing an equestrian center.</p>
+                    <div class="pc-tags"><span>JavaFX</span><span>Java</span><span>MySQL</span></div>
+                    <div class="pc-links"><a href="https://github.com/ghayth002/PiDev-EquitationCenter" target="_blank" class="pc-btn"><i class="fab fa-github"></i> GitHub</a></div>
+                </div>
+                <div class="project-card reveal-up" style="--d:.7s">
+                    <div class="pc-glow" style="--hue:320"></div>
+                    <div class="pc-header"><div class="pc-icon" style="--hue:320"><i class="fas fa-gamepad"></i></div></div>
+                    <h3 data-i18n="projects.gameTitle">2D Game</h3>
+                    <p data-i18n="projects.game">Game in C with SDL and custom Arduino controller.</p>
+                    <div class="pc-tags"><span>C</span><span>SDL</span><span>Arduino</span></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="experience" class="experience section">
+    <!-- ═══ EXPERIENCE ═══ -->
+    <section id="experience" class="section exp-section">
         <div class="container">
-            <div class="section-header"><span class="section-subtitle" data-i18n="experience.subtitle">Career</span><h2 class="section-title" data-i18n="experience.title">Experience</h2></div>
+            <div class="section-head">
+                <span class="s-label reveal-up" data-i18n="experience.subtitle">Career</span>
+                <h2 class="s-title reveal-up" style="--d:.1s" data-i18n="experience.title">Experience</h2>
+            </div>
             <div class="timeline">
-                <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-content"><div class="timeline-header"><h3>Cube IT</h3><span class="timeline-date">Jun 2025 - Present</span></div><h4 data-i18n="experience.cubeTitle">Mobile Developer Intern</h4><p data-i18n="experience.cubeDesc">Flutter/Spring Boot app with route optimization and geolocation.</p><div class="timeline-tech"><span>Flutter</span><span>Spring Boot</span></div></div></div>
-                <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-content"><div class="timeline-header"><h3>Barmej Tech</h3><span class="timeline-date">Jun - Aug 2024</span></div><h4 data-i18n="experience.barmejTitle">Full-Stack Developer Intern</h4><p data-i18n="experience.barmejDesc">HR Platform with leave management (+30% performance).</p><div class="timeline-tech"><span>Full-Stack</span><span>HR</span></div></div></div>
-                <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-content"><div class="timeline-header"><h3>La Poste Tunisienne</h3><span class="timeline-date">2021</span></div><h4 data-i18n="experience.posteTitle">IT Support Intern</h4><p data-i18n="experience.posteDesc">Active participation in IT systems maintenance and service digitalization.</p><div class="timeline-tech"><span>IT Support</span><span>Digitalization</span></div></div></div>
+                <div class="tl-item reveal-up" style="--d:.0s">
+                    <div class="tl-marker"><div class="tl-dot"></div></div>
+                    <div class="tl-card">
+                        <div class="tl-top">
+                            <div>
+                                <h3>Cube IT</h3>
+                                <h4 data-i18n="experience.cubeTitle">Mobile Developer Intern</h4>
+                            </div>
+                            <span class="tl-date">Jun 2025 – Present</span>
+                        </div>
+                        <p data-i18n="experience.cubeDesc">Flutter/Spring Boot app with route optimization and geolocation.</p>
+                        <div class="tl-chips"><span>Flutter</span><span>Spring Boot</span></div>
+                    </div>
+                </div>
+                <div class="tl-item reveal-up" style="--d:.15s">
+                    <div class="tl-marker"><div class="tl-dot"></div></div>
+                    <div class="tl-card">
+                        <div class="tl-top">
+                            <div>
+                                <h3>Barmej Tech</h3>
+                                <h4 data-i18n="experience.barmejTitle">Full-Stack Developer Intern</h4>
+                            </div>
+                            <span class="tl-date">Jun – Aug 2024</span>
+                        </div>
+                        <p data-i18n="experience.barmejDesc">HR Platform with leave management (+30% performance).</p>
+                        <div class="tl-chips"><span>Full-Stack</span><span>HR</span></div>
+                    </div>
+                </div>
+                <div class="tl-item reveal-up" style="--d:.3s">
+                    <div class="tl-marker"><div class="tl-dot"></div></div>
+                    <div class="tl-card">
+                        <div class="tl-top">
+                            <div>
+                                <h3>La Poste Tunisienne</h3>
+                                <h4 data-i18n="experience.posteTitle">IT Support Intern</h4>
+                            </div>
+                            <span class="tl-date">2021</span>
+                        </div>
+                        <p data-i18n="experience.posteDesc">Active participation in IT systems maintenance and service digitalization.</p>
+                        <div class="tl-chips"><span>IT Support</span><span>Digitalization</span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact section">
+    <!-- ═══ CONTACT ═══ -->
+    <section id="contact" class="section contact-section">
         <div class="container">
-            <div class="section-header"><span class="section-subtitle" data-i18n="contact.subtitle">Get in touch</span><h2 class="section-title" data-i18n="contact.title">Contact Me</h2></div>
-            <div class="contact-content">
-                <div class="contact-info">
+            <div class="section-head">
+                <span class="s-label reveal-up" data-i18n="contact.subtitle">Get in touch</span>
+                <h2 class="s-title reveal-up" style="--d:.1s" data-i18n="contact.title">Contact Me</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal-up">
                     <h3 data-i18n="contact.letsConnect">Let's Connect</h3>
                     <p data-i18n="contact.description">Looking for opportunities. Feel free to reach out!</p>
-                    <div class="contact-cards">
-                        <a href="mailto:ghaythweslaty10@gmail.com" class="contact-card"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-text"><span>Email</span><p>ghaythweslaty10@gmail.com</p></div></a>
-                        <a href="tel:+21694854835" class="contact-card"><div class="contact-icon"><i class="fas fa-phone"></i></div><div class="contact-text"><span data-i18n="contact.phone">Phone</span><p>+216 94854835</p></div></a>
-                        <a href="https://linkedin.com/in/ghayth-weslati" target="_blank" class="contact-card"><div class="contact-icon"><i class="fab fa-linkedin-in"></i></div><div class="contact-text"><span>LinkedIn</span><p>ghayth-weslati</p></div></a>
-                        <a href="https://github.com/ghayth002" target="_blank" class="contact-card"><div class="contact-icon"><i class="fab fa-github"></i></div><div class="contact-text"><span>GitHub</span><p>ghayth002</p></div></a>
+                    <div class="contact-links">
+                        <a href="mailto:ghaythweslaty10@gmail.com" class="c-link"><div class="c-icon"><i class="fas fa-envelope"></i></div><div><strong>Email</strong><span>ghaythweslaty10@gmail.com</span></div></a>
+                        <a href="tel:+21694854835" class="c-link"><div class="c-icon"><i class="fas fa-phone"></i></div><div><strong data-i18n="contact.phone">Phone</strong><span>+216 94854835</span></div></a>
+                        <a href="https://linkedin.com/in/ghayth-weslati" target="_blank" class="c-link"><div class="c-icon"><i class="fab fa-linkedin-in"></i></div><div><strong>LinkedIn</strong><span>ghayth-weslati</span></div></a>
+                        <a href="https://github.com/ghayth002" target="_blank" class="c-link"><div class="c-icon"><i class="fab fa-github"></i></div><div><strong>GitHub</strong><span>ghayth002</span></div></a>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
-                    <div class="form-group"><input type="text" id="name" required><label for="name" data-i18n="contact.name">Name</label></div>
-                    <div class="form-group"><input type="email" id="email" required><label for="email" data-i18n="contact.email">Email</label></div>
-                    <div class="form-group"><textarea id="message" rows="5" required></textarea><label for="message" data-i18n="contact.message">Message</label></div>
-                    <button type="submit" class="btn btn-primary btn-full"><span data-i18n="contact.send">Send</span><i class="fas fa-paper-plane"></i></button>
+                <form class="contact-form reveal-right" id="contact-form">
+                    <div class="f-group">
+                        <input type="text" id="name" required placeholder=" ">
+                        <label for="name" data-i18n="contact.name">Name</label>
+                    </div>
+                    <div class="f-group">
+                        <input type="email" id="email" required placeholder=" ">
+                        <label for="email" data-i18n="contact.email">Email</label>
+                    </div>
+                    <div class="f-group">
+                        <textarea id="message" rows="5" required placeholder=" "></textarea>
+                        <label for="message" data-i18n="contact.message">Message</label>
+                    </div>
+                    <button type="submit" class="btn-primary full magnetic">
+                        <span data-i18n="contact.send">Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Visitor Counter Widget -->
-    <section class="visitor-counter-section">
-        <div class="container">
-            <div class="visitor-counter-widget" id="visitor-counter-widget">
-                <div class="visitor-counter-icon"><i class="fas fa-chart-line"></i></div>
-                <div class="visitor-counter-info">
-                    <span class="visitor-counter-label" data-i18n="counter.label">Total Visitors</span>
-                    <span class="visitor-counter-number" id="visitor-count"><i class="fas fa-spinner fa-spin"></i></span>
-                </div>
-                <div class="visitor-counter-badge">
-                    <i class="fas fa-circle pulse-dot"></i>
-                    <span data-i18n="counter.live">Live</span>
-                </div>
-            </div>
+    <!-- Visitor Counter -->
+    <div class="visitor-bar">
+        <div class="vb-inner">
+            <i class="fas fa-chart-line"></i>
+            <span data-i18n="counter.label">Total Visitors</span>
+            <strong id="visitor-count"><i class="fas fa-spinner fa-spin"></i></strong>
+            <div class="vb-live"><span class="live-dot"></span><span data-i18n="counter.live">Live</span></div>
         </div>
-    </section>
-    <!-- End Visitor Counter Widget -->
+    </div>
 
+    <!-- Fun Button -->
+    <button id="fun-btn" class="fun-btn" title="Click for magic!">🦆</button>
+
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo"><span class="logo-text">GO</span><span class="logo-dot"></span></div>
-                <p data-i18n="footer.designed">Designed by Ghaith Oueslati</p>
-                <div class="footer-socials"><a href="https://github.com/ghayth002" target="_blank"><i class="fab fa-github"></i></a><a href="https://linkedin.com/in/ghayth-weslati" target="_blank"><i class="fab fa-linkedin-in"></i></a><a href="mailto:ghaythweslaty10@gmail.com"><i class="fas fa-envelope"></i></a></div>
-                <p class="copyright">&copy; 2025 Ghaith Oueslati</p>
+        <div class="footer-inner">
+            <span class="f-logo">GO<span class="f-dot">.</span></span>
+            <p data-i18n="footer.designed">Designed by Ghaith Oueslati</p>
+            <div class="f-socials">
+                <a href="https://github.com/ghayth002" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/ghayth-weslati" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:ghaythweslaty10@gmail.com"><i class="fas fa-envelope"></i></a>
             </div>
+            <p class="copy">&copy; 2025 Ghaith Oueslati</p>
         </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script src="translations.js"></script>
     <script src="script.js"></script>
 </body>
