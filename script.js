@@ -211,6 +211,8 @@ function initScrollReveal() {
 
 // --- Three.js Background (3D Data Sea) ---
 function initThreeJS() {
+    // Disable on mobile — saves significant GPU/battery
+    if (window.matchMedia('(max-width: 768px)').matches) return;
     if (typeof THREE === 'undefined') return;
     
     const canvas = document.getElementById('three-canvas');
@@ -239,8 +241,9 @@ function initThreeJS() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     
     // ── Cloud / AI Neural Network (Plexus Effect) ──
-    const particleCount = 100; // Reduced from 200 for 4x performance boost
-    const maxDistance = 45; // Slightly increased connection distance
+    const particleCount = 70; // Reduced for perf
+    const maxDistance = 40;
+    const maxDistSq = maxDistance * maxDistance; // Use squared dist — avoids sqrt per pair
     
     // Positions & Velocities
     const particlePositions = new Float32Array(particleCount * 3);
@@ -382,7 +385,7 @@ function initThreeJS() {
         }
         particlesMesh.geometry.attributes.position.needsUpdate = true;
 
-        // Draw Network Lines
+        // Draw Network Lines (O(n²) — optimized with squared distance, no sqrt)
         let vertexpos = 0;
         let colorpos = 0;
         baseColor.setHex(colors.line);
@@ -392,10 +395,10 @@ function initThreeJS() {
                 const dx = positions[i * 3]     - positions[j * 3];
                 const dy = positions[i * 3 + 1] - positions[j * 3 + 1];
                 const dz = positions[i * 3 + 2] - positions[j * 3 + 2];
-                const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+                const distSq = dx*dx + dy*dy + dz*dz;
 
-                if (dist < maxDistance) {
-                    const alpha = 1.0 - (dist / maxDistance);
+                if (distSq < maxDistSq) {
+                    const alpha = 1.0 - (Math.sqrt(distSq) / maxDistance);
                     
                     linesPositions[vertexpos++] = positions[i * 3];
                     linesPositions[vertexpos++] = positions[i * 3 + 1];
@@ -465,9 +468,10 @@ function initCursorTrail() {
     cv.height = window.innerHeight;
     const ctx = cv.getContext('2d');
     const trail = [];
-    let mx = -200, my = -200, hue = 0;
+    let hue = 0;
+    let rafId = null;
+    let idleTimer = null;
 
-    // Adjust blending based on theme dynamically
     const updateBlendMode = () => {
         const isLight = document.documentElement.getAttribute('data-theme') === 'light';
         cv.style.mixBlendMode = isLight ? 'normal' : 'screen';
@@ -475,44 +479,49 @@ function initCursorTrail() {
     updateBlendMode();
     window.addEventListener('themeChanged', updateBlendMode);
 
-    document.addEventListener('mousemove', e => {
-        mx = e.clientX; my = e.clientY;
-        for (let k = 0; k < 2; k++) {
-            trail.push({
-                x: mx + (Math.random() - 0.5) * 6,
-                y: my + (Math.random() - 0.5) * 6,
-                r: 2 + Math.random() * 3,
-                life: 1,
-                hue: hue
-            });
-        }
-        hue = (hue + 3) % 360;
-        if (trail.length > 60) trail.splice(0, trail.length - 60);
-    }, { passive: true });
-
-    window.addEventListener('resize', () => { cv.width = window.innerWidth; cv.height = window.innerHeight; });
-
-    (function loop() {
+    const loop = () => {
         ctx.clearRect(0, 0, cv.width, cv.height);
+        let hasAlive = false;
         for (let i = trail.length - 1; i >= 0; i--) {
             const p = trail[i];
             p.life -= 0.045;
             if (p.life <= 0) { trail.splice(i, 1); continue; }
+            hasAlive = true;
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r * p.life, 0, Math.PI * 2);
-            
-            // Slightly deeper saturation for light mode visibility
             const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-            const lightness = isLight ? '50%' : '65%';
-            ctx.fillStyle = `hsla(${p.hue}, 100%, ${lightness}, ${p.life * 0.6})`;
+            ctx.fillStyle = `hsla(${p.hue}, 100%, ${isLight ? '50%' : '65%'}, ${p.life * 0.6})`;
             ctx.fill();
         }
-        requestAnimationFrame(loop);
-    })();
+        // Stop RAF when nothing left to draw — resumes on next mousemove
+        if (hasAlive) { rafId = requestAnimationFrame(loop); }
+        else { rafId = null; }
+    };
+
+    document.addEventListener('mousemove', e => {
+        for (let k = 0; k < 2; k++) {
+            trail.push({
+                x: e.clientX + (Math.random() - 0.5) * 6,
+                y: e.clientY + (Math.random() - 0.5) * 6,
+                r: 2 + Math.random() * 3,
+                life: 1,
+                hue
+            });
+        }
+        hue = (hue + 3) % 360;
+        if (trail.length > 60) trail.splice(0, trail.length - 60);
+        // Restart RAF only if not already running
+        if (!rafId) { rafId = requestAnimationFrame(loop); }
+    }, { passive: true });
+
+    window.addEventListener('resize', () => { cv.width = window.innerWidth; cv.height = window.innerHeight; });
 }
 
 // --- Magnetic Buttons & Spotlight Cards ---
 function initMagneticButtons() {
+    // Disable magnetic + spotlight on mobile — not needed for touch
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+
     document.querySelectorAll('.btn-primary, .btn-ghost, .social-orb, .icon-btn').forEach(el => {
         el.addEventListener('mousemove', e => {
             const r = el.getBoundingClientRect();
@@ -525,12 +534,11 @@ function initMagneticButtons() {
         });
     });
 
-    // Spotlight glow tracking for all cards (Optimized with RAF)
-    const cards = document.querySelectorAll('.glass-card, .project-card, .skill-block, .tl-card');
+    // Spotlight: only update cards that are near the viewport — skip offscreen ones
+    const cards = [...document.querySelectorAll('.glass-card, .project-card, .skill-block, .tl-card')];
     let ticking = false;
-    let spotlightX = 0;
-    let spotlightY = 0;
-    
+    let spotlightX = 0, spotlightY = 0;
+
     document.addEventListener('mousemove', e => {
         spotlightX = e.clientX;
         spotlightY = e.clientY;
@@ -538,10 +546,10 @@ function initMagneticButtons() {
             requestAnimationFrame(() => {
                 cards.forEach(card => {
                     const rect = card.getBoundingClientRect();
-                    const x = spotlightX - rect.left;
-                    const y = spotlightY - rect.top;
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
+                    // Skip cards that are far outside the viewport
+                    if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
+                    card.style.setProperty('--mouse-x', `${spotlightX - rect.left}px`);
+                    card.style.setProperty('--mouse-y', `${spotlightY - rect.top}px`);
                 });
                 ticking = false;
             });
