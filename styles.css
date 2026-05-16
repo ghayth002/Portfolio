@@ -329,6 +329,8 @@ h1, h2, h3 { font-family: 'Syne', sans-serif; }
 
 /* Sections */
 .section { padding: 10rem 0; position: relative; z-index: 10; contain: layout style; }
+/* Defer rendering of off-screen sections — huge scroll perf win */
+.section:not(#home) { content-visibility: auto; contain-intrinsic-size: 0 700px; }
 .section-head { margin-bottom: 5rem; text-align: center; }
 .s-label {
     display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 700;
@@ -343,24 +345,23 @@ h1, h2, h3 { font-family: 'Syne', sans-serif; }
 /* 3D Global Card Styles */
 .glass-card, .skill-block, .project-card, .tl-card, .c-link {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px;
-    /* Reduced blur layers for performance — only blur on desktop */
-    transform-style: preserve-3d; transition: border-color 0.4s, box-shadow 0.4s;
+    transition: border-color 0.4s, box-shadow 0.4s;
     box-shadow: var(--shadow-card), inset 0 0 0 1px rgba(255,255,255,0.05);
-    will-change: transform;
+    /* preserve-3d only on desktop — on mobile it creates too many compositor layers */
 }
 @media (min-width: 769px) {
     .glass-card, .skill-block, .project-card, .tl-card, .c-link {
         backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        transform-style: preserve-3d;
+    }
+    /* 3D Inner Elements Pop — desktop only */
+    .glass-card > *, .skill-block > *, .project-card > *, .tl-card > *, .c-link > * {
+        transform: translateZ(40px);
     }
 }
 .glass-card:hover, .skill-block:hover, .project-card:hover, .tl-card:hover, .c-link:hover {
     border-color: var(--border-hover);
     box-shadow: var(--shadow-hover), 0 0 20px rgba(139,92,246,0.2), inset 0 0 20px rgba(255,255,255,0.05);
-}
-
-/* 3D Inner Elements Pop */
-.glass-card > *, .skill-block > *, .project-card > *, .tl-card > *, .c-link > * {
-    transform: translateZ(40px); /* Makes elements pop out of the card heavily */
 }
 
 /* About */
@@ -822,7 +823,7 @@ h1, h2, h3 { font-family: 'Syne', sans-serif; }
     letter-spacing: 0.15em;
 }
 
-/* ── Skill block enhanced hover ── */
+/* ── Skill block enhanced hover — animation only starts on hover ── */
 .skill-block::after {
     content: '';
     position: absolute;
@@ -832,35 +833,32 @@ h1, h2, h3 { font-family: 'Syne', sans-serif; }
     opacity: 0;
     z-index: -1;
     transition: opacity 0.3s;
+    /* No always-on animation — only animate on hover */
+}
+.skill-block:hover::after {
+    opacity: 1;
     animation: rotateBorderAngle 2s linear infinite;
 }
-.skill-block:hover::after { opacity: 1; }
 
 
 
-/* ── Button enhanced glow pulse ── */
+/* ── Button enhanced glow pulse — on hover only to avoid constant GPU paint ── */
 @keyframes btnPulse {
     0%, 100% { box-shadow: 0 0 20px rgba(0,240,255,0.3); }
     50%       { box-shadow: 0 0 40px rgba(0,240,255,0.6), 0 0 80px rgba(139,92,246,0.3); }
 }
 
 .btn-primary {
-    animation: btnPulse 3s ease-in-out infinite;
     transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
                 box-shadow 0.25s ease !important;
 }
-
-/* ── Orbit badges enhanced ── */
-@keyframes orbitPulse {
-    0%, 100% { box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 0 rgba(0,240,255,0); }
-    50%       { box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 20px rgba(0,240,255,0.4); }
+.btn-primary:hover {
+    animation: btnPulse 1.5s ease-in-out infinite;
 }
 
-.orbit-badge { animation: orbitPulse 2.5s ease-in-out infinite; }
-.orbit-badge.b1 { animation-delay: 0s; }
-.orbit-badge.b2 { animation-delay: 0.6s; }
-.orbit-badge.b3 { animation-delay: 1.2s; }
-.orbit-badge.b4 { animation-delay: 1.8s; }
+/* ── Orbit badges — float animation only (no always-on glow pulse) ── */
+.orbit-badge { box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.orbit-badge:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 20px rgba(0,240,255,0.4); }
 
 /* ── Scrollbar premium styling ── */
 ::-webkit-scrollbar { width: 5px; }

@@ -362,8 +362,34 @@ function initThreeJS() {
     // Helper for color mapping
     const baseColor = new THREE.Color();
     
+    let animId = null;
+    let isScrolling = false;
+    let scrollTimer = null;
+
+    // Pause Three.js during scroll — the #1 remaining jank source
+    window.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            isScrolling = true;
+            if (animId) { cancelAnimationFrame(animId); animId = null; }
+        }
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+            isScrolling = false;
+            if (!animId && !document.hidden) animId = requestAnimationFrame(animate);
+        }, 150);
+    }, { passive: true });
+
+    // Pause when tab is not visible
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            if (animId) { cancelAnimationFrame(animId); animId = null; }
+        } else if (!isScrolling) {
+            animId = requestAnimationFrame(animate);
+        }
+    });
+
     const animate = () => {
-        requestAnimationFrame(animate);
+        animId = requestAnimationFrame(animate);
 
         targetX = mouseX * 0.1;
         targetY = mouseY * 0.1;
@@ -430,7 +456,7 @@ function initThreeJS() {
 
         renderer.render(scene, camera);
     };
-    animate();
+    animId = requestAnimationFrame(animate);
 }
 
 // --- Scroll Progress Bar ---
